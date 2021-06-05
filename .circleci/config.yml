@@ -66,8 +66,8 @@ jobs:
     steps:
       - run: return 1
       - run:
-        command: echo "Something was wrong"
-        when: on_fail
+          command: echo "Something was wrong"
+          when: on_fail
 workflows:
   # Name the workflow "welcome"
   welcome:
