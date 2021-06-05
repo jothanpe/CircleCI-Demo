@@ -31,7 +31,7 @@ jobs:
           name: Saving TXT file
           command: echo "Hello World" > output.txt
       - persist_to_workspace:
-          root: /tmp/dir
+          root: /tmp
           paths:
             - output.txt
   print_output_file:
@@ -39,7 +39,7 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - attach_workspace:
-          at: /tmp/dir
+          at: /tmp
       - run:
           name: Reading TXT file
           command: cat output.txt
