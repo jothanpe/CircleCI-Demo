@@ -22,7 +22,8 @@ jobs:
     steps:
       - run:
         name: Echoing my env var
-        command: echo $User
+        command: |
+          echo $User
 workflows:
   # Name the workflow "welcome"
   welcome:
