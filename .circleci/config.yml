@@ -8,8 +8,8 @@ commands:
       entry:
         type: string
         default: No parameter entered
-      steps:
-        - run: echo Workflow ID <<parameters.entry>>
+    steps:
+      - run: echo Workflow ID <<parameters.entry>>
 # Use a package of configuration called an orb.
 orbs:
   # Declare a dependency on the welcome-orb
