@@ -1,5 +1,16 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
+# Use commands for fun
+commands:
+  print_pipeline_id:
+    description: Very simple command to print the Pipeline ID
+    parameters:
+      entry:
+        type: string
+        default: No parameter entered
+      steps:
+        - run: |
+          echo "Workflow ID: << parameters.entry >>""
 # Use a package of configuration called an orb.
 orbs:
   # Declare a dependency on the welcome-orb
@@ -43,6 +54,12 @@ jobs:
       - run:
           name: Reading TXT file
           command: cat /tmp/output.txt
+  print_workflow_id:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - print_pipeline_id:
+          entry: $CIRCLE_WORKFLOW_ID
 workflows:
   # Name the workflow "welcome"
   welcome:
@@ -56,5 +73,5 @@ workflows:
       - save_hello_world_output
       - print_output_file:
           requires:
-              - save_hello_world_output
-
+            - save_hello_world_output
+      - print_workflow_id
